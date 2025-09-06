@@ -1,34 +1,50 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 import parkingSolar from "@/assets/parking-solar.jpg";
 import constructionProcess from "@/assets/construction-process.jpg";
+import glampingResort from "@/assets/glamping-resort.jpg";
 
 export function ServicesSection() {
   const { t } = useLanguage();
 
   const services = [
     {
-      title: t('services.prefab.title'),
-      description: t('services.prefab.desc'),
+      title: "Case Prefabbricate",
+      description: "Costruzioni moderne, sostenibili e personalizzate per il tuo futuro. Tempi rapidi e qualità garantita.",
       features: [
-        t('services.prefab.feature1'),
-        t('services.prefab.feature2'),
-        t('services.prefab.feature3'),
-        t('services.prefab.feature4')
+        "Costruzione in 30-60 giorni",
+        "Materiali eco-compatibili",
+        "Personalizzazione completa",
+        "Risparmio energetico -40%"
       ],
-      image: constructionProcess
+      image: constructionProcess,
+      link: "/case-prefabbricate"
     },
     {
-      title: t('services.parking.title'),
-      description: t('services.parking.desc'),
+      title: "Pannelli Solari",
+      description: "Energia pulita e rinnovabile per un futuro sostenibile. Riduzione bollette e impatto ambientale zero.",
       features: [
-        t('services.parking.feature1'),
-        t('services.parking.feature2'),
-        t('services.parking.feature3'),
-        t('services.parking.feature4')
+        "Riduzione bolletta -80%",
+        "Garanzia 25 anni",
+        "Sistemi di accumulo",
+        "Colonnine di ricarica EV"
       ],
-      image: parkingSolar
+      image: parkingSolar,
+      link: "/pannelli-solari"
+    },
+    {
+      title: "Glamping Resort",
+      description: "L'esperienza di campeggio più lussuosa e confortevole che tu abbia mai provato.",
+      features: [
+        "Strutture uniche e confortevoli",
+        "Servizio premium 5 stelle",
+        "Location esclusiva nella natura",
+        "Attività e divertimenti inclusi"
+      ],
+      image: glampingResort,
+      link: "/glamping"
     }
   ];
 
@@ -42,7 +58,7 @@ export function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Card key={index} className="overflow-hidden shadow-elegant hover:shadow-glow transition-all duration-300">
               <div className="aspect-video relative overflow-hidden">
@@ -70,12 +86,14 @@ export function ServicesSection() {
                   ))}
                 </ul>
                 
-                <Button 
-                  variant="outline" 
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                >
-                  {t('services.button')}
-                </Button>
+                <Link to={service.link} className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    Scopri di Più
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

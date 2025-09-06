@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 import glampingPod from "@/assets/glamping-pod.jpg";
 import glampingResort from "@/assets/glamping-resort.jpg";
 
@@ -45,12 +46,14 @@ export function GlampingSection() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
           <div className="absolute bottom-8 left-8 right-8 text-center lg:text-left">
-            <Button 
-              size="lg"
-              className="bg-gradient-hero hover:opacity-90 text-white shadow-glow"
-            >
-              {t('glamping.cta')}
-            </Button>
+            <Link to="/glamping">
+              <Button 
+                size="lg"
+                className="bg-gradient-hero hover:opacity-90 text-white shadow-glow"
+              >
+                Scopri di Più
+              </Button>
+            </Link>
           </div>
         </div>
 
