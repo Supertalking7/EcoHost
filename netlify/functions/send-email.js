@@ -44,7 +44,7 @@ exports.handler = async function(event, context) {
     }
 
     // Configurazione del transporter email
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER, // Usa la variabile d'ambiente
