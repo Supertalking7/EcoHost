@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavigationProps {
   className?: string;
@@ -8,11 +9,13 @@ interface NavigationProps {
 
 export function Navigation({ className }: NavigationProps) {
   const { language, setLanguage, t } = useLanguage();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   return (
     <nav className={cn("fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b", className)}>
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-gradient-hero rounded-md flex items-center justify-center">
             <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
@@ -22,19 +25,34 @@ export function Navigation({ className }: NavigationProps) {
           <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
             Solar Build
           </span>
-        </div>
+        </Link>
         
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#servizi" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.services')}
-          </a>
-          <a href="#vantaggi" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.benefits')}
-          </a>
-
-          <a href="#contatti" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.contact')}
-          </a>
+          {isHomePage ? (
+            <>
+              <a href="#servizi" className="text-foreground hover:text-primary transition-colors">
+                {t('nav.services')}
+              </a>
+              <a href="#vantaggi" className="text-foreground hover:text-primary transition-colors">
+                {t('nav.benefits')}
+              </a>
+              <a href="#contatti" className="text-foreground hover:text-primary transition-colors">
+                {t('nav.contact')}
+              </a>
+            </>
+          ) : (
+            <>
+              <Link to="/#servizi" className="text-foreground hover:text-primary transition-colors">
+                {t('nav.services')}
+              </Link>
+              <Link to="/#vantaggi" className="text-foreground hover:text-primary transition-colors">
+                {t('nav.benefits')}
+              </Link>
+              <Link to="/#contatti" className="text-foreground hover:text-primary transition-colors">
+                {t('nav.contact')}
+              </Link>
+            </>
+          )}
         </div>
 
         <div className="flex items-center space-x-4">
